@@ -18,6 +18,7 @@ class BurpHistoryParser {
             val jsList = mutableSetOf<String>()
             val endpointList = mutableSetOf<String>()
             val jsonKeyList = mutableSetOf<String>()
+            val jsonEndpointList = mutableSetOf<String>()
 
             val proxyHistory = callbacks.proxyHistory
 
@@ -54,6 +55,7 @@ class BurpHistoryParser {
                         try {
                             val path = reqInfo.url.toString()
                             endpointList.addAll(((URI(path)).path).split("/"))
+                            println(((URI(path)).path).split("/"))
 
                             if (statusCode == 200 && respInfo.inferredMimeType.lowercase() == "script") {
                                 val body = Arrays.copyOfRange(it.response, respInfo.bodyOffset, it.response.size)
