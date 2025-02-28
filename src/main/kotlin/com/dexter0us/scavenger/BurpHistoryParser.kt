@@ -71,6 +71,8 @@ class BurpHistoryParser {
                             if (statusCode == 200 && respInfo.inferredMimeType.lowercase() == "json") {
                                 val body = Arrays.copyOfRange(it.response, respInfo.bodyOffset, it.response.size)
                                 jsonKeyList.addAll(JsonParser().parser(helpers.bytesToString(body)))
+                                val path = reqInfo.url.path
+                                prinln(">>>>>>>"+path)
                             }
                         } catch (e: Exception) {
 //                       stderr.println("JSON.")
